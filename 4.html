@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1c40f;
+            margin: 0;
+        }
+
+        .converter {
+            background-color: #2ecc71;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        select, button {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h1>Number Converter</h1>
+        <label for="decimalInput">Enter Decimal Number:</label>
+        <input type="number" id="decimalInput">
+        <br>
+        <label for="baseSelector">Select Conversion Base:</label>
+        <select id="baseSelector">
+            <option value="2">Binary</option>
+            <option value="8">Octal</option>
+            <option value="16">Hexadecimal</option>
+        </select>
+        <br>
+        <button onclick="convert()">Convert</button>
+        <h2>Result:</h2>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            var decimalInput = document.getElementById('decimalInput').value;
+            var base = document.getElementById('baseSelector').value;
+            var result = parseInt(decimalInput, 10).toString(base);
+            document.getElementById('result').textContent = result;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Prime Numbers</title>
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0d81d9;
+            margin: 0;
+        }
+
+        .prime-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .prime-number {
+            background-color: #2ecc71;
+            color: white;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            animation: pulse 0.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="prime-container" id="primeNumbers"></div>
+
+    <script>
+        function isPrime(num) {
+            if (num <= 1) {
+                return false;
+            }
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function findPrimes() {
+            let primeNumbers = [];
+            for (let i = 500; i >= 99; i--) {
+                if (isPrime(i)) {
+                    primeNumbers.push(i);
+                }
+            }
+            return primeNumbers;
+        }
+
+        window.onload = function() {
+            const primeNumbers = findPrimes();
+            const primeNumbersContainer = document.getElementById('primeNumbers');
+            
+            primeNumbers.forEach(number => {
+                const primeNumberDiv = document.createElement('div');
+                primeNumberDiv.className = 'prime-number';
+                primeNumberDiv.textContent = number;
+                primeNumbersContainer.appendChild(primeNumberDiv);
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Multiplication</title>
+    <style>
+        body {
+            background-color: #13ec37;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            perspective: 1200px;
+        }
+
+        .container {
+            transform: rotateX(20deg) rotateY(15deg);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
+        }
+
+        .card {
+            color: #3498db;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1e8449;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Array Multiplication</h1>
+            <form id="arrayForm">
+                Enter elements of Array 1 (comma-separated): <input type="text" id="array1Input" required><br>
+                Enter elements of Array 2 (comma-separated): <input type="text" id="array2Input" required><br>
+                <button type="button" onclick="multiplyArrays()">Calculate Multiplication</button>
+            </form>
+            <h2>Result:</h2>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function multiplyArrays() {
+            var array1 = document.getElementById('array1Input').value.split(',').map(Number);
+            var array2 = document.getElementById('array2Input').value.split(',').map(Number);
+            var result = multiplyArraysHelper(array1, array2);
+            document.getElementById('result').textContent = 'Multiplication Result: ' + result;
+        }
+
+        function multiplyArraysHelper(array1, array2) {
+            if (array1.length !== array2.length) {
+                return 'Arrays must have the same length for multiplication.';
+            }
+
+            var product = 1;
+            for (var i = 0; i < array1.length; i++) {
+                product *= array1[i] * array2[i];
+            }
+            return product;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 1s ease;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .input-container input {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 1s ease;
+        }
+
+        .button-container button {
+            padding: 15px 30px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #2980b9;
+        }
+
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Palindrome Checker</h1>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Enter a string">
+        </div>
+        <div class="input-container">
+            <input type="text" id="additionalInput1" placeholder="Additional Input 1">
+        </div>
+        <div class="input-container">
+            <input type="text" id="additionalInput2" placeholder="Additional Input 2">
+        </div>
+        <div class="button-container">
+            <button onclick="checkPalindrome()">Check</button>
+        </div>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function isPalindrome(str) {
+            var cleanStr = str.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+            for (var i = 0; i < cleanStr.length / 2; i++) {
+                if (cleanStr[i] !== cleanStr[cleanStr.length - 1 - i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function checkPalindrome() {
+            var userInput = document.getElementById("userInput").value;
+            var additionalInput1 = document.getElementById("additionalInput1").value;
+            var additionalInput2 = document.getElementById("additionalInput2").value;
+            var resultMessage = document.getElementById("result");
+
+            if (isPalindrome(userInput) && isPalindrome(additionalInput1) && isPalindrome(additionalInput2)) {
+                resultMessage.textContent = "All inputs are palindromes!";
+            } else {
+                resultMessage.textContent = "At least one of the inputs is not a palindrome.";
+            }
+        }
+
+        // Change background color and input background color every 5 seconds
+        setInterval(function() {
+            var colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c'];
+            var randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+            document.body.style.backgroundColor = randomColor;
+            var inputFields = document.querySelectorAll('.input-container input');
+            inputFields.forEach(function(input) {
+                input.style.backgroundColor = randomColor;
+            });
+        }, 5000);
+    </script>
+</body>
+
+</html>
